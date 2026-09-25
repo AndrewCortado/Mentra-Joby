@@ -1,0 +1,17 @@
+{
+  "name": "mentra-joby",
+  "private": true,
+  "scripts": {
+    "dev": "mentra-miniapp dev",
+    "build": "bun run build.ts",
+    "typecheck": "tsc --noEmit",
+    "release": "mentra-miniapp release"
+  },
+  "dependencies": {
+    "@mentra/miniapp": "3.1.1"
+  },
+  "devDependencies": {
+    "@mentra/miniapp-cli": "0.1.0-beta.1",
+    "typescript": "5.9.3"
+  }
+}
