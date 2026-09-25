@@ -1,10 +1,10 @@
 # Mentra X Joby
 
-A Mentra glasses miniapp. This repository is the project setup: on session ready it draws the text **Mentra X Joby** on the glasses display. Tour content is not in this repo yet.
+A Mentra glasses miniapp. This repository is the project setup: on session ready it speaks **Welcome to Mentra X Joby**. The app is audio-only and does not need a display. Tour content is not in this repo yet.
 
 Apps for the current Mentra App are on-device miniapps built with [`@mentra/miniapp`](https://www.npmjs.com/package/@mentra/miniapp). The older cloud SDK, `@mentra/sdk` (`AppServer`, API keys, ngrok, console.mentra.glass), is retired and will not run in the current Mentra App.
 
-No accounts, API keys, or environment variables are needed. Do not add a `.env` file.
+No accounts, API keys, or environment variables are needed. Spoken audio uses the Mentra App's text-to-speech. Do not add a `.env` file.
 
 ## Prerequisites
 
@@ -12,7 +12,9 @@ No accounts, API keys, or environment variables are needed. Do not add a `.env` 
 - The [Mentra App](https://mentraglass.com/os) on Android or iPhone, signed in
 - The phone and the computer on the same Wi-Fi
 
-Glasses are optional for loading the miniapp. The display has nowhere to draw until display glasses are connected. This project targets display glasses (Even Realities G1/G2, Vuzix Z100, and similar). Mentra documents no simulator.
+This project targets display-less glasses (Mentra Live). A display is not required. Mentra documents no simulator.
+
+Glasses are optional for loading the miniapp. With no glasses connected, the welcome plays from the phone speaker. To hear it from Mentra Live, connect the glasses in the Mentra App. On iOS, also select Mentra Live as the media output in Settings → Bluetooth. If you skip that step, the welcome plays from the phone speaker.
 
 The Miniapp SDK is in beta. MentraOS 3.0 has no store distribution for these miniapps.
 
@@ -30,7 +32,7 @@ bun run dev
 
 That validates `miniapp.json`, builds the background bundle, serves it on your LAN, and prints a QR code and a `miniapp://dev?...` URL. Leave the process running.
 
-On the phone: **Settings → Miniapp Developer Settings → Scan Miniapp QR Code**, then scan the QR. The miniapp installs and starts. With display glasses connected, **Mentra X Joby** appears. G1 and Z100 may show it through the host's text fallback.
+On the phone: **Settings → Miniapp Developer Settings → Scan Miniapp QR Code**, then scan the QR. The miniapp installs and starts, and you should hear **Welcome to Mentra X Joby**. With Mentra Live connected (and selected as the iOS Bluetooth media output), that comes from the glasses speaker. The app should start with no "not compatible" alert.
 
 `bun run release` serves a local install that keeps running after you close the laptop. There is no `pack` script: distribution is not supported in MentraOS 3.0.
 

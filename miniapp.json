@@ -8,6 +8,6 @@
     "background": "background/index.js"
   },
   "hardwareRequirements": [
-    {"type": "DISPLAY", "level": "REQUIRED"}
+    {"type": "SPEAKER", "level": "REQUIRED"}
   ]
 }
