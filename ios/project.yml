@@ -1,0 +1,78 @@
+name: MentraJoby
+options:
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+    TARGETED_DEVICE_FAMILY: "1"
+    CODE_SIGN_STYLE: Automatic
+    GENERATE_INFOPLIST_FILE: YES
+    INFOPLIST_KEY_UILaunchScreen_Generation: YES
+    INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+    INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
+    INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription: "Mentra X Joby uses Bluetooth to find and connect to your Mentra Live glasses."
+    INFOPLIST_KEY_NSMicrophoneUsageDescription: "Mentra X Joby uses the microphone to hear your voice during the tour."
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+
+packages:
+  MentraBluetoothSDK:
+    url: https://github.com/Mentra-Community/mentra-bluetooth-sdk-ios.git
+    exactVersion: "3.1.1"
+
+targets:
+  MentraJoby:
+    type: application
+    platform: iOS
+    sources:
+      - path: MentraJoby
+    dependencies:
+      - package: MentraBluetoothSDK
+        product: MentraBluetoothSDK
+    configFiles:
+      Debug: Config/App.xcconfig
+      Release: Config/App.xcconfig
+    settings:
+      base:
+        PRODUCT_NAME: MentraJoby
+        INFOPLIST_KEY_CFBundleDisplayName: "Mentra X Joby"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+      configs:
+        Debug:
+          ENABLE_TESTABILITY: YES
+
+  MentraJobyTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: MentraJobyTests
+    dependencies:
+      - target: MentraJoby
+      - package: MentraBluetoothSDK
+        product: MentraBluetoothSDK
+    configFiles:
+      Debug: Config/App.xcconfig
+      Release: Config/App.xcconfig
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.andrewcortado.mentrajoby.tests
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/MentraJoby.app/MentraJoby"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+
+schemes:
+  MentraJoby:
+    build:
+      targets:
+        MentraJoby: all
+        MentraJobyTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - MentraJobyTests
