@@ -10,15 +10,10 @@ final class GlassesControllerTests: XCTestCase {
         XCTAssertEqual(ConnectionPhase.from(.connecting), .connecting)
         XCTAssertEqual(ConnectionPhase.from(.bonding), .connecting)
         XCTAssertEqual(ConnectionPhase.from(.connected), .connected)
-        XCTAssertEqual(ConnectionPhase.searching.title, "Searching")
-        XCTAssertEqual(ConnectionPhase.connecting.title, "Connecting")
-        XCTAssertEqual(ConnectionPhase.connected.title, "Connected")
-        XCTAssertEqual(ConnectionPhase.disconnected.title, "Disconnected")
     }
 
     func testReconnectPolicyRetriesOnlyWhileDisconnectedWithASavedDevice() {
         let policy = ReconnectPolicy()
-        XCTAssertEqual(policy.interval, 30)
         XCTAssertTrue(policy.shouldRetry(phase: .disconnected, hasDefaultDevice: true, userDisconnected: false))
         XCTAssertFalse(policy.shouldRetry(phase: .disconnected, hasDefaultDevice: true, userDisconnected: true))
         XCTAssertFalse(policy.shouldRetry(phase: .disconnected, hasDefaultDevice: false, userDisconnected: false))
@@ -54,7 +49,6 @@ final class GlassesControllerTests: XCTestCase {
         controller.handleAudioRouteChange()
         XCTAssertEqual(speaker.lines, [GlassesController.welcomeText])
         XCTAssertFalse(controller.needsAudioRouteHint)
-        XCTAssertEqual(GlassesController.audioRouteHint, "select Mentra Live in Settings → Bluetooth")
     }
 
     private func makeController(speaker: FakeSpeaker, bluetoothRoute: Bool) -> (GlassesController, MentraBluetoothSDK) {

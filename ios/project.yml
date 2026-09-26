@@ -6,7 +6,7 @@ options:
 
 settings:
   base:
-    SWIFT_VERSION: "5.9"
+    SWIFT_VERSION: "5.0"
     IPHONEOS_DEPLOYMENT_TARGET: "16.0"
     TARGETED_DEVICE_FAMILY: "1"
     CODE_SIGN_STYLE: Automatic
@@ -52,8 +52,6 @@ targets:
       - path: MentraJobyTests
     dependencies:
       - target: MentraJoby
-      - package: MentraBluetoothSDK
-        product: MentraBluetoothSDK
     configFiles:
       Debug: Config/App.xcconfig
       Release: Config/App.xcconfig
