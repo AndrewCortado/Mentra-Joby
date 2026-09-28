@@ -1,0 +1,12 @@
+{
+  "name": "@mentra-ai/backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@mentra-ai/shared": "0.0.0"
+  }
+}

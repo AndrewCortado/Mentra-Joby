@@ -1,0 +1,18 @@
+{
+  "name": "mentra-ai",
+  "private": true,
+  "workspaces": [
+    "mentra",
+    "backend",
+    "shared"
+  ],
+  "scripts": {
+    "build": "npm run build -w @mentra-ai/shared && npm run build -w @mentra-ai/mentra && npm run build -w @mentra-ai/backend",
+    "typecheck": "npm run typecheck -w @mentra-ai/shared && npm run typecheck -w @mentra-ai/mentra && npm run typecheck -w @mentra-ai/backend",
+    "test": "npm test -w @mentra-ai/mentra",
+    "dev": "npm run dev -w @mentra-ai/mentra"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

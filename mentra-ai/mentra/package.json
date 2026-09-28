@@ -1,0 +1,19 @@
+{
+  "name": "@mentra-ai/mentra",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit && bun run build.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --experimental-test-module-mocks --test test/hardware-check.test.ts",
+    "dev": "mentra-miniapp dev"
+  },
+  "dependencies": {
+    "@mentra/miniapp": "3.1.1"
+  },
+  "devDependencies": {
+    "@mentra-ai/shared": "0.0.0",
+    "@mentra/miniapp-cli": "0.1.0-beta.1"
+  }
+}

@@ -1,0 +1,6 @@
+---
+description: Build Mentra AI one stage at a time
+alwaysApply: true
+---
+
+Build one stage at a time. Never put OpenAI keys in the Mentra client. Do not jump to later stages.

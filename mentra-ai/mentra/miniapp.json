@@ -1,0 +1,42 @@
+{
+  "$schema": "../node_modules/@mentra/miniapp-cli/schema/miniapp.schema.json",
+  "packageName": "com.andrewcortado.mentraai",
+  "version": "0.1.0",
+  "name": "Mentra AI",
+  "description": "Hardware check for Mentra glasses. No AI. Audio is not stored or sent.",
+  "type": "background",
+  "sdkVersion": "0.3.0",
+  "minHostVersion": "2.13.0",
+  "port": 3010,
+  "entry": {
+    "background": "background/index.js"
+  },
+  "permissions": [
+    {
+      "type": "MICROPHONE",
+      "description": "Hardware check. The microphone is opened and audio is not stored or sent."
+    }
+  ],
+  "hardwareRequirements": [
+    {
+      "type": "DISPLAY",
+      "level": "REQUIRED",
+      "description": "Shows the hardware-check line."
+    },
+    {
+      "type": "MICROPHONE",
+      "level": "REQUIRED",
+      "description": "Opens the microphone for the hardware check. Audio is not stored or sent."
+    },
+    {
+      "type": "SPEAKER",
+      "level": "OPTIONAL",
+      "description": "Speaks the hardware-check line. The line still shows on the display without a speaker."
+    },
+    {
+      "type": "BUTTON",
+      "level": "OPTIONAL",
+      "description": "Press the glasses button to run the hardware check."
+    }
+  ]
+}
