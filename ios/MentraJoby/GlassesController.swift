@@ -46,16 +46,6 @@ struct ReconnectPolicy: Equatable {
     }
 }
 
-struct WelcomeOnce: Equatable {
-    private(set) var spoken = false
-
-    mutating func consume(ready: Bool, hasBluetoothRoute: Bool) -> Bool {
-        guard ready, hasBluetoothRoute, !spoken else { return false }
-        spoken = true
-        return true
-    }
-}
-
 @MainActor
 final class GlassesController: ObservableObject, MentraBluetoothSDKDelegate {
     static let welcomeText = "Welcome to the Mentra X Joby tour"
@@ -75,7 +65,7 @@ final class GlassesController: ObservableObject, MentraBluetoothSDKDelegate {
     private var savedDevice: Device?
     private var userDisconnected = false
     private var glassesReady = false
-    private var welcome = WelcomeOnce()
+    private var welcomeSpoken = false
     // Mentra Live discovery does not publish GlassesConnectionState.scanning.
     private var scanning = false
     private var scanSession: ScanSession?
@@ -174,7 +164,6 @@ final class GlassesController: ObservableObject, MentraBluetoothSDKDelegate {
     }
 
     func reconnect() {
-        userDisconnected = false
         if savedDevice == nil {
             savedDevice = Self.storedDevice(in: defaults)
         }
@@ -319,12 +308,13 @@ final class GlassesController: ObservableObject, MentraBluetoothSDKDelegate {
     }
 
     private func speakWelcomeIfNeeded() {
-        if welcome.consume(ready: glassesReady, hasBluetoothRoute: routeIsBluetooth()) {
+        if glassesReady, routeIsBluetooth(), !welcomeSpoken {
+            welcomeSpoken = true
             needsAudioRouteHint = false
             speaker.speak(Self.welcomeText)
             return
         }
-        if glassesReady, !welcome.spoken, !routeIsBluetooth() {
+        if glassesReady, !welcomeSpoken, !routeIsBluetooth() {
             needsAudioRouteHint = true
         } else if routeIsBluetooth() {
             needsAudioRouteHint = false

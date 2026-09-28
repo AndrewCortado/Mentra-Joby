@@ -24,7 +24,7 @@ final class GlassesControllerTests: XCTestCase {
 
     func testSpeaksWelcomeOnceWhenRouteIsAlreadyBluetooth() {
         let speaker = FakeSpeaker()
-        let (controller, sdk) = makeController(speaker: speaker, bluetoothRoute: true)
+        let (controller, sdk) = makeController(speaker: speaker, route: RouteFlag(true))
 
         controller.mentraBluetoothSDK(sdk, didUpdateGlasses: glasses(ready: false))
         XCTAssertEqual(speaker.lines, [])
@@ -49,10 +49,6 @@ final class GlassesControllerTests: XCTestCase {
         controller.handleAudioRouteChange()
         XCTAssertEqual(speaker.lines, [GlassesController.welcomeText])
         XCTAssertFalse(controller.needsAudioRouteHint)
-    }
-
-    private func makeController(speaker: FakeSpeaker, bluetoothRoute: Bool) -> (GlassesController, MentraBluetoothSDK) {
-        makeController(speaker: speaker, route: RouteFlag(bluetoothRoute))
     }
 
     private func makeController(speaker: FakeSpeaker, route: RouteFlag) -> (GlassesController, MentraBluetoothSDK) {

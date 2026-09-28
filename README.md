@@ -9,9 +9,7 @@
 - Mentra Live glasses running software 3.1.1
 - An Apple Developer account
 
-This app is iPhone only. Future voice input will use the glasses microphone over the Bluetooth link (`useGlassesMic: true`). This version does not record audio.
-
-Glasses below software 3.1.1 are a known risk. The SDK pinned here is 3.1.1 and only works with glasses software 3.1.1. Updating the glasses once with Mentra's Starter Kit app is buggy, so confirm the glasses actually reached 3.1.1 before relying on this app. If they are still below 3.1.1, the connection and the spoken welcome may fail.
+This app is iPhone only. This version does not record audio.
 
 ## Build
 
