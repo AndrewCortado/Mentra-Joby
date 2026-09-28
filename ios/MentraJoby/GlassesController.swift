@@ -85,11 +85,12 @@ final class GlassesController: ObservableObject, MentraBluetoothSDKDelegate {
     private var routeObserver: NSObjectProtocol?
 
     init(
-        sdk: MentraBluetoothSDK = MentraBluetoothSDK(configuration: .init(analytics: .disabled)),
+        sdk: MentraBluetoothSDK? = nil,
         speaker: WelcomeSpeaking? = nil,
         defaults: UserDefaults = .standard,
         routeIsBluetooth: @escaping () -> Bool = AudioRoute.currentIsBluetooth
     ) {
+        let sdk = sdk ?? MentraBluetoothSDK(configuration: .init(analytics: .disabled))
         self.sdk = sdk
         self.defaults = defaults
         self.routeIsBluetooth = routeIsBluetooth
