@@ -1,0 +1,5 @@
+// Copy to Signing.local.xcconfig (gitignored). Do not commit your Team ID.
+DEVELOPMENT_TEAM = YOURTEAMID
+
+// Optional. Overrides the bundle id in App.xcconfig.
+// PRODUCT_BUNDLE_IDENTIFIER = com.andrewcortado.mentrajoby

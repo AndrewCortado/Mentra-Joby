@@ -1,5 +1,10 @@
-node_modules/
-dist/
-build/
-*.zip
-.env*
+.DS_Store
+ios/*.xcodeproj
+xcuserdata/
+DerivedData/
+*.xcarchive
+*.ipa
+*.p12
+*.mobileprovision
+*.cer
+ios/Config/Signing.local.xcconfig
